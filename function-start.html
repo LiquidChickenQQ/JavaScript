@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,13 +9,17 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        width: 200px;
+        border-radius: 10px;
+        width: 242px;
         background: #eee;
       }
       .msgBox p {
-        line-height: 1.5;
+       line-height: 1.5;
         padding: 10px 20px;
         color: #333;
+        padding-left: 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
       }
       .msgBox button {
         background: none;
@@ -33,12 +36,13 @@
     <button>Display message box</button>
 
     <script>
+ var btn = document.querySelector('button');
+ btn.onclick = function() {
+ displayMessage('Your inbox is almost full — delete some mails', 'warning');
+};
         
-   var btn = document.querySelector('button');
-   btn.onclick = displayMessage;
-        
-function displayMessage() {
-         
+   function displayMessage(msgText, msgType) {
+ 
 var html = document.querySelector('html');
 
 var panel = document.createElement('div');
@@ -46,7 +50,7 @@ panel.setAttribute('class', 'msgBox');
 html.appendChild(panel);
 
 var msg = document.createElement('p');
-msg.textContent = 'This is a message box';
+msg.textContent = msgText;
 panel.appendChild(msg);
 
 var closeBtn = document.createElement('button');
@@ -55,10 +59,17 @@ panel.appendChild(closeBtn);
 
 closeBtn.onclick = function() {
   panel.parentNode.removeChild(panel);
+}    
+ if (msgType === 'warning') {
+  msg.style.backgroundImage = 'url(icons/warning.png)';
+  panel.style.backgroundColor = 'red';
+} else if (msgType === 'chat') {
+  msg.style.backgroundImage = 'url(icons/chat.png)';
+  panel.style.backgroundColor = 'aqua';
+} else {
+  msg.style.paddingLeft = '20px';
+}       
 }
-         
-} 
-
         
     </script>
   </body>
