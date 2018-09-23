@@ -10,3 +10,5 @@ fetch(url)
             console.log("response failed?");
         }
     });
+
+document.querySelector("info");
